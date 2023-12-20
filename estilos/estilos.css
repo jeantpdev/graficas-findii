@@ -1,0 +1,166 @@
+@import url(./config/global.css);
+
+.contenido-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vw 2vw;
+    color: #191919;
+}
+
+.contenido-menu .lado-izquierdo .contenido-izquierda .banner-equiti img{
+    height: 6vh;
+}
+
+
+.contenido-menu .lado-derecho .contenido-derecha{
+    display: grid;
+    grid-template-areas: 
+    "nombre imagen"
+    "rol imagen";
+    column-gap: 1vw;
+    justify-items: end;
+    align-items: center;
+}
+
+.contenido-derecha .nombre-usuario{
+    grid-area: nombre;
+}
+
+.contenido-derecha .nombre-usuario p{
+    font-weight: 500;
+}
+
+.contenido-derecha .rol-usuario{
+    grid-area: rol;
+}
+
+.contenido-derecha .rol-usuario p{
+    font-size: 2.2vh;
+}
+
+.contenido-derecha .imagen{
+    grid-area: imagen;
+}
+
+.contenido-derecha .imagen img{
+    height: 7vh;
+}
+
+.contenido-derecha .enlace-menu{
+    color: #191919;
+    font-weight: 400;
+    font-size: 3vh;
+}
+
+.hero{
+    color: #191919;
+    background-color: rgb(245, 245, 245);
+}
+
+.hero .pagina-principal{
+    padding: 5vh 5vw;
+}
+
+.hero .pagina-principal .grilla{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+.datos-usuario .nombre p{
+    font-size: 7vh;
+    font-weight: 700;
+}
+
+.datos-estadisticos .contenido-datos-estadisticos{
+    display: flex;
+    column-gap: 2vw;
+}
+
+.contenido-datos-estadisticos .estadistica{
+    display: grid;
+    grid-template-areas: 
+    "titulo icono"
+    "valor icono";
+    background-color: #ffffff;
+    padding: 0.5vw 1.5vw;
+    column-gap: 2vw;
+    border-radius: 0.5vw;
+    justify-content: space-between;
+}
+
+.estadistica .titulo{
+    grid-area: titulo;
+}
+
+.estadistica .titulo p{
+    font-size: 2.5vh;
+    color: rgba(107, 114, 128);
+}
+
+.estadistica .valor{
+    text-align: center;
+    grid-area: valor;
+}
+
+.estadistica .valor p{
+    font-weight: 700;    
+}
+
+.estadistica .icono{
+    display: flex;
+    align-items: center;
+    grid-area: icono;
+    color: rgba(107, 114, 128);
+
+}
+
+.graficas{
+    margin-top: 5vh;
+}
+
+.cont-grafica{
+    padding: 1vw 2vw;
+    border-radius: 1vw;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+}
+
+.graficas .contenido-graficas{
+    display: grid;
+    grid-template-areas: 
+    "ventas-mes ventas-realizar";
+    justify-content: space-between;
+}
+
+.graficas .ventas-mes{
+    grid-area: ventas-mes;
+}
+
+.titulo-grafica{
+    padding: 0.5vw;
+    border-bottom: 1px solid rgb(233, 231, 231);
+}
+
+.titulo-grafica p{
+    font-size: 3vh;
+    color: rgba(107, 114, 128);
+}
+
+.grafica-ventas-mes #myChart{
+    width: 60vw;
+}
+
+.graficas .ventas-realizar{
+    grid-area: ventas-realizar;
+}
+
+.ventas-realizar #myDona{
+    height: 40vh;
+}
+
+    
+
