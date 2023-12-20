@@ -24,8 +24,8 @@ new Chart(dona, {
   type: 'doughnut',
   data: {
     labels: [
-      'Red',
-      'Blue'
+      '% Ventas realizadas',
+      '% Por cumplir'
     ],
     datasets: [{
       label: 'My First Dataset',
