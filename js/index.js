@@ -21,21 +21,38 @@ new Chart(ctx, {
 });
 
 new Chart(dona, {
-    type: 'doughnut',
-    data: {
-        labels: [
-            'Red',
-            'Blue'
-          ],
-          datasets: [{
-            label: 'My First Dataset',
-            data: [300, 50],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-            ],
-            hoverOffset: 4
-          }]
-    }
-  });
+  type: 'doughnut',
+  data: {
+    labels: [
+      'Red',
+      'Blue'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [300, 50],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+      ],
+      hoverOffset: 4
+    }]
+  }
+});
+
+const abrirMenuOpciones = document.getElementById('abrirMenuOpciones');
+const opcionesPerfil = document.getElementById('opcionesPerfil');
+
+abrirMenuOpciones.onclick = function () {
+  if (opcionesPerfil.style.display === "none" || opcionesPerfil.style.display === "") {
+    opcionesPerfil.style.display = "block";
+  } else {
+    opcionesPerfil.style.display = "none";
+  }
+};
+
+
+
+
+
+
 

@@ -1,6 +1,6 @@
 @import url(./config/global.css);
 
-.contenido-menu{
+.contenido-menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -8,159 +8,203 @@
     color: #191919;
 }
 
-.contenido-menu .lado-izquierdo .contenido-izquierda .banner-equiti img{
+.contenido-menu .lado-izquierdo .contenido-izquierda .banner-equiti img {
     height: 6vh;
 }
 
 
-.contenido-menu .lado-derecho .contenido-derecha{
+.contenido-menu .lado-derecho .contenido-derecha {
     display: grid;
-    grid-template-areas: 
-    "nombre imagen"
-    "rol imagen";
+    grid-template-areas:
+        "nombre imagen"
+        "rol imagen";
     column-gap: 1vw;
     justify-items: end;
     align-items: center;
 }
 
-.contenido-derecha .nombre-usuario{
+.contenido-derecha .nombre-usuario {
     grid-area: nombre;
 }
 
-.contenido-derecha .nombre-usuario p{
+.contenido-derecha .nombre-usuario p {
     font-weight: 500;
 }
 
-.contenido-derecha .rol-usuario{
+.contenido-derecha .rol-usuario {
     grid-area: rol;
 }
 
-.contenido-derecha .rol-usuario p{
+.contenido-derecha .rol-usuario p {
     font-size: 2.2vh;
 }
 
-.contenido-derecha .imagen{
+.contenido-derecha .imagen {
     grid-area: imagen;
 }
 
-.contenido-derecha .imagen img{
+.contenido-derecha .imagen img {
     height: 7vh;
+    cursor: pointer;
 }
 
-.contenido-derecha .enlace-menu{
+.contenido-derecha .enlace-menu {
     color: #191919;
     font-weight: 400;
     font-size: 3vh;
 }
 
-.hero{
-    color: #191919;
-    background-color: rgb(245, 245, 245);
+.contenido-derecha .opciones-perfil{
+    display: none;
+    position: absolute;
+    top: 10vh;
+    border-radius: 0.5vw;
+    background-color:white;
+    box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
+    padding: 2vw;
 }
 
-.hero .pagina-principal{
+.opciones-perfil .contenido-perfil{
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25vh;
+    width: 12vw;
+}
+
+.contenido-perfil .enlaces{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido-perfil .enlaces li a{
+    color: #191919;
+}
+
+.contenido-perfil .enlace{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 1vw;
+    flex-wrap: wrap;
+    row-gap: 2vh;
+}
+
+.hero {
+    color: #191919;
+    background-color: #ffffff;
+}
+
+.hero .pagina-principal {
     padding: 5vh 5vw;
 }
 
-.hero .pagina-principal .grilla{
+.hero .pagina-principal .grilla {
     display: flex;
     flex-direction: column;
     row-gap: 3vh;
 }
 
-.datos-usuario .nombre p{
+.datos-usuario .nombre p {
     font-size: 7vh;
     font-weight: 700;
 }
 
-.datos-estadisticos .contenido-datos-estadisticos{
+.datos-estadisticos .contenido-datos-estadisticos {
     display: flex;
     column-gap: 2vw;
 }
 
-.contenido-datos-estadisticos .estadistica{
+.contenido-datos-estadisticos .estadistica {
     display: grid;
-    grid-template-areas: 
-    "titulo icono"
-    "valor icono";
+    grid-template-areas:
+        "valor icono"
+        "titulo icono";
     background-color: #ffffff;
     padding: 0.5vw 1.5vw;
     column-gap: 2vw;
     border-radius: 0.5vw;
     justify-content: space-between;
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.08);
+    height: 10vh;
+    width: 15vw;
 }
 
-.estadistica .titulo{
+.estadistica .titulo {
     grid-area: titulo;
 }
 
-.estadistica .titulo p{
-    font-size: 2.5vh;
-    color: rgba(107, 114, 128);
+.estadistica .titulo p {
+    color: #00000088;
+    font-weight: 600;
+    font-size: 1.9vh;
 }
 
-.estadistica .valor{
-    text-align: center;
+.estadistica .valor {
     grid-area: valor;
 }
 
-.estadistica .valor p{
-    font-weight: 700;    
+.estadistica .valor p {
+    font-size: 4vh;
+    font-weight: 700;
 }
 
-.estadistica .icono{
+.estadistica .icono {
     display: flex;
     align-items: center;
     grid-area: icono;
-    color: rgba(107, 114, 128);
-
+    color: #030303;
 }
 
-.graficas{
+.estadistica .icono i{
+    font-size: 5vh;
+}
+
+.graficas {
     margin-top: 5vh;
 }
 
-.cont-grafica{
+.cont-grafica {
     padding: 1vw 2vw;
     border-radius: 1vw;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     row-gap: 1vh;
+    box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
 }
 
-.graficas .contenido-graficas{
+.graficas .contenido-graficas {
     display: grid;
-    grid-template-areas: 
-    "ventas-mes ventas-realizar";
+    grid-template-areas:
+        "ventas-mes ventas-realizar";
     justify-content: space-between;
 }
 
-.graficas .ventas-mes{
+.graficas .ventas-mes {
     grid-area: ventas-mes;
 }
 
-.titulo-grafica{
+.titulo-grafica {
     padding: 0.5vw;
     border-bottom: 1px solid rgb(233, 231, 231);
 }
 
-.titulo-grafica p{
+.titulo-grafica p {
     font-size: 3vh;
-    color: rgba(107, 114, 128);
+    font-weight: 600;
+    color: #00000088;
 }
 
-.grafica-ventas-mes #myChart{
+.grafica-ventas-mes #myChart {
     width: 60vw;
 }
 
-.graficas .ventas-realizar{
+.graficas .ventas-realizar {
     grid-area: ventas-realizar;
 }
 
-.ventas-realizar #myDona{
+.ventas-realizar #myDona {
     height: 40vh;
 }
-
-    
-
