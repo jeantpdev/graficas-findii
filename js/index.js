@@ -28,42 +28,56 @@ const Vista = {
     const ventas_totales = res.data.ventas_totales
     const valores = res.data.ventas_realizadas
 
-    console.log(valores)
-    console.log(ventas_totales)
+    const datos = document.getElementById("contenedorDatos")
+    const contenidoDatos = document.createElement('div')
 
-    valores.forEach(element => {
-      const datos = document.getElementById("contenedorDatos")
-      const contenidoDatos = document.createElement('div')
+    contenidoDatos.classList.add("estadistica")
 
-      contenidoDatos.classList.add("estadistica")
-      contenidoDatos.innerHTML = `
-          <div class="titulo">
-            <p>Ventas realizadas</p>
-         </div>
+    contenidoDatos.innerHTML = `
+      <div class="titulo">
+          <p>Ventas totales realizadas</p>
+      </div>
          
-         <div class="valor">
-           <p>20</p>
-         </div>
+      <div class="valor">
+          <p>${ventas_totales}</p>
+      </div>
 
-         <div class="icono">
-           <i class="fa-solid fa-money-check-dollar"></i>
-         </div>
+      <div class="icono">
+          <i class="fa-solid fa-money-check-dollar"></i>
+      </div>
     `
-      contenidoDatos.append(datos)
-    });
+    datos.append(contenidoDatos)
+
+    // valores.forEach(element => {
+    //   const datos = document.getElementById("contenedorDatos")
+    //   const contenidoDatos = document.createElement('div')
+
+    //   contenidoDatos.classList.add("estadistica")
+    //   contenidoDatos.innerHTML = `
+    //       <div class="titulo">
+    //         <p>Ventas realizadas</p>
+    //      </div>
+         
+    //      <div class="valor">
+    //        <p>{}</p>
+    //      </div>
+
+    //      <div class="icono">
+    //        <i class="fa-solid fa-money-check-dollar"></i>
+    //      </div>
+    // `
+    //   contenidoDatos.append(datos)
+    // });
 
   }
-
 
 }
 
 const Controlador = {
 
   async datos_agente() {
-
     const res = await Modelo.traer_datos_agente(localStorage.getItem('cedula'))
     Vista.datosEstadisticos(res)
-
   },
 
 }

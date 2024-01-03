@@ -92,7 +92,7 @@ const Controlador = {
 
 
                 Vista.mostrarAlertaSatisfactorio("Inicio de sesión exitoso");
-                //Vista.redirigirAIndex();
+                Vista.redirigirAIndex();
             } else {
                 Vista.mostrarMensajeError("Usuario no encontrado")
                 //Vista.limpiarCampos();
