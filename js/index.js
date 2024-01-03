@@ -1,3 +1,84 @@
+import config from './supabase/keys.js';
+
+
+//Modelo que recibe los datos y los envia a la base de datos
+const Modelo = {
+
+  async traer_datos_agente(cedula) {
+    const datos_insertar_bd = {
+      cedula: cedula,
+    }
+
+    //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
+    const res = axios({
+      method: "POST",
+      url: "http://127.0.0.1:5000/datos-agente",
+      headers: config.headers,
+      data: datos_insertar_bd,
+    });
+    return res
+  }
+
+}
+
+const Vista = {
+
+  datosEstadisticos(res) {
+
+    const ventas_totales = res.data.ventas_totales
+    const valores = res.data.ventas_realizadas
+
+    console.log(valores)
+    console.log(ventas_totales)
+
+    valores.forEach(element => {
+      const datos = document.getElementById("contenedorDatos")
+      const contenidoDatos = document.createElement('div')
+
+      contenidoDatos.classList.add("estadistica")
+      contenidoDatos.innerHTML = `
+          <div class="titulo">
+            <p>Ventas realizadas</p>
+         </div>
+         
+         <div class="valor">
+           <p>20</p>
+         </div>
+
+         <div class="icono">
+           <i class="fa-solid fa-money-check-dollar"></i>
+         </div>
+    `
+      contenidoDatos.append(datos)
+    });
+
+  }
+
+
+}
+
+const Controlador = {
+
+  async datos_agente() {
+
+    const res = await Modelo.traer_datos_agente(localStorage.getItem('cedula'))
+    Vista.datosEstadisticos(res)
+
+  },
+
+}
+
+// const botonEnviar = document.getElementById('btnIngresar');
+
+// botonEnviar.onclick = function () {
+//     Controlador.iniciarSesion()
+// }
+
+document.addEventListener('DOMContentLoaded', function () {
+  Controlador.datos_agente()
+})
+
+
 const ctx = document.getElementById('myChart');
 const dona = document.getElementById('myDona');
 
