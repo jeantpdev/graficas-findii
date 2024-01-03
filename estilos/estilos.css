@@ -12,6 +12,13 @@
     height: 5vh;
 }
 
+.contenido-menu .lado-izquierdo .contenido-izquierda{
+    display: flex;
+    column-gap: 2vw;
+    align-items: center;
+}
+
+
 .contenido-menu .lado-derecho .contenido-derecha {
     display: grid;
     grid-template-areas:
@@ -113,6 +120,7 @@
 .datos-estadisticos .contenido-datos-estadisticos {
     display: flex;
     column-gap: 2vw;
+    justify-content: space-evenly;
 }
 
 .contenido-datos-estadisticos .estadistica {
