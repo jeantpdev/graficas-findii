@@ -110,19 +110,30 @@ const Vista = {
             </div>
 
             <div class="enlace">
-                <div class="icono">
-                    <i class="fa-solid fa-gear"></i>
-                </div>
+              <div class="icono">
+                <i class="fa-solid fa-file-pen"></i>
+              </div>
 
-                <div class="texto">
-                    <button>Configurar</button>
-                </div>
-            </div>
+              <div class="texto">
+                  <button><a href="https://docs.google.com/forms/d/1zmWZxi-XVMlfp2KE7dv9EEhqIPYGcDDSZY75K1s4lDU/viewform?pli=1&pli=1&edit_requested=true" target="_blank" >Reporte diario</a></button>
+              </div>
+          </div>
 
         </div>
     </div>
 
     <div class="pie-menu">
+
+        <div class="enlace">
+            <div class="icono">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+
+            <div class="texto">
+                <button>Configurar</button>
+            </div>
+        </div>
+
         <div class="enlace">
             <div class="icono">
                 <i class="fa-solid fa-right-from-bracket"></i>
