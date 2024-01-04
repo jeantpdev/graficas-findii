@@ -72,7 +72,6 @@ const Vista = {
   },
 
   datosAgente(res) {
-    console.log(res.data)
 
     const menuNombreAgente = document.getElementById('menuNombreAgente')
     const menuRolUsuario = document.getElementById('menuRolUsuario')
@@ -101,23 +100,34 @@ const Vista = {
         `
       <div class="enlaces">
         <div class="enlace">
-            <div class="icono">
-                <i class="fa-solid fa-user"></i>
-            </div>
-
-            <div class="texto">
-                <button>Mi perfil</button>
-            </div>
-
-            <div class="enlace">
-              <div class="icono">
-                <i class="fa-solid fa-file-pen"></i>
-              </div>
-
-              <div class="texto">
-                  <button><a href="https://docs.google.com/forms/d/1zmWZxi-XVMlfp2KE7dv9EEhqIPYGcDDSZY75K1s4lDU/viewform?pli=1&pli=1&edit_requested=true" target="_blank" >Reporte diario</a></button>
-              </div>
+          <div class="icono">
+              <i class="fa-solid fa-user"></i>
           </div>
+
+          <div class="texto">
+            <button><a href= "./pages/perfil.html">Mi perfil</a></button>
+          </div>
+        </div>
+
+        <div class="enlace">
+          <div class="icono">
+              <i class="fa-solid fa-user"></i>
+          </div>
+
+          <div class="texto">
+              <button><a href= "../index.html">Ventas</a></button>
+          </div>
+        </div>
+
+        <div class="enlace">
+          <div class="icono">
+              <i class="fa-solid fa-file-pen"></i>
+          </div>
+
+          <div class="texto">
+              <button><a href="https://docs.google.com/forms/d/1zmWZxi-XVMlfp2KE7dv9EEhqIPYGcDDSZY75K1s4lDU/viewform?pli=1&pli=1&edit_requested=true" target="_blank" >Reporte diario</a></button>
+          </div>
+        </div>
 
         </div>
     </div>
@@ -179,6 +189,42 @@ const Vista = {
     }
   },
 
+  crearGrafico(myChart, labels_barra, datos_barra, tipo){
+
+    new Chart(myChart, {
+      type: tipo,
+      data: {
+        labels: labels_barra,
+        datasets: [{
+          label: '# de ventas',
+          data: datos_barra,
+          borderWidth: 1
+        }]
+      },
+    });
+  },
+
+  mostrarGraficas(res){
+    console.log(res.data)
+    const myChart = document.getElementById('myChart')
+    const dona = document.getElementById('myDona')
+    
+    const mesActual = parseInt(res.data.cant_ventas_diciembre)
+
+    const datos_barra = [res.data.cant_ventas_octubre, res.data.cant_ventas_noviembre, res.data.cant_ventas_diciembre]
+    const labels_barra = ['Octubre', 'Noviembre', 'Diciembre']
+    this.crearGrafico(myChart, labels_barra, datos_barra, 'bar')
+
+    const datos_dona = [mesActual, 23 - mesActual]
+    const labels_dona = ['Ventas realizadas', 'Ventas por cumplir']
+    this.crearGrafico(dona, labels_dona, datos_dona, 'doughnut')
+
+    const tituloGrafica = document.getElementById('tituloGrafica')
+    tituloGrafica.innerHTML =
+    `
+    <p>Ventas mes actual =  ${res.data.cant_ventas_diciembre}/23</p>
+    `;
+  }
 
 }
 
@@ -192,15 +238,20 @@ const Controlador = {
   async datosAgente() {
     const res = await Modelo.traerDatosPersonalesAgente(localStorage.getItem('cedula'))
     Vista.datosAgente(res)
-  }
+  },
+
+  async datosAgenteGraficas() {
+    const res = await Modelo.traerVentasRealizadasAgente(localStorage.getItem('cedula'))
+    Vista.mostrarGraficas(res)
+  },
 
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
-  Controlador.ventasRealizadasAgente()
-  Controlador.datosAgente()
-  Vista.opcionesMenu()
+  Controlador.ventasRealizadasAgente();
+  Controlador.datosAgente();
+  Vista.opcionesMenu();
+  Controlador.datosAgenteGraficas();
 
 })
 
@@ -229,48 +280,6 @@ function horaActual() {
 
 horaActual();
 setInterval(horaActual, 1000);
-
-
-const ctx = document.getElementById('myChart');
-const dona = document.getElementById('myDona');
-
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
-
-new Chart(dona, {
-  type: 'doughnut',
-  data: {
-    labels: [
-      '% Ventas realizadas',
-      '% Por cumplir'
-    ],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [300, 50],
-      backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-      ],
-      hoverOffset: 4
-    }]
-  }
-});
 
 const abrirMenuOpciones = document.getElementById('abrirMenuOpciones');
 const opcionesPerfil = document.getElementById('opcionesPerfil');

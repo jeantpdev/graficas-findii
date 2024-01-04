@@ -3,10 +3,10 @@ import config from '../supabase/keys.js';
 
 //Modelo que recibe los datos y los envia a la base de datos
 const Modelo = {
-    async iniciar_seion(username, password) {
+    async iniciar_seion(correo, password) {
 
         const datos_insertar_bd = {
-            username: username,
+            correo: correo,
             password: password
         }
 
@@ -40,9 +40,9 @@ const Modelo = {
 const Vista = {
     //Método de la vista que recibe los valores que hay en el DOM y los retorna
     getDatosInicioSesion() {
-        const username = document.getElementById('usuario').value;
+        const correo = document.getElementById('correo').value;
         const password = document.getElementById('contrasena').value;
-        return { username, password };
+        return { correo, password };
     },
 
     mostrarMensajeError(mensaje) {
@@ -79,9 +79,9 @@ const Vista = {
 const Controlador = {
 
     async iniciarSesion() {
-        const { username, password } = Vista.getDatosInicioSesion();
+        const { correo, password } = Vista.getDatosInicioSesion();
         try {
-            const res = await Modelo.iniciar_seion(username, password);
+            const res = await Modelo.iniciar_seion(correo, password);
             console.log(res)
             if (res.data.acceso == "AUTORIZADO") {
                 const access_token = res.data.access_token;
@@ -101,8 +101,6 @@ const Controlador = {
         } catch (err) {
             Vista.mostrarMensajeError('Error al iniciar sesión');
             console.log(err);
-
-            Vista.limpiarCampos();
         }
     },
 
@@ -122,9 +120,16 @@ const Controlador = {
 
     }
 
+
 }
 
 const botonEnviar = document.getElementById('btnIngresar');
+const botonEnter = document
+botonEnter.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        Controlador.iniciarSesion();
+    }
+});
 
 botonEnviar.onclick = function () {
     Controlador.iniciarSesion()
