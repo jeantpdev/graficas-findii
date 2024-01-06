@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/descarga.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../estilos/formulario.css">
+    
+    <title>Formulario ventas Findii</title>
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <div class="contenido-menu">
+                <div class="lado-izquierdo">
+                    <div class="contenido-izquierda">
+                        <div class="banner-findii">
+                            <img src="../img/FINDII.png" alt="">
+                        </div>
+                        <div class="hora-actual" >
+                            <p id="horaActual"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lado-derecho">
+                    <div class="contenido-derecha">
+                        <div class="nombre-usuario" id = "menuNombreAgente"> </div>
+                        <div class="rol-usuario" id = "menuRolUsuario"> </div>
+                        <div class="imagen" id="abrirMenuOpciones">
+                            <img src="../img/undraw_male_avatar_g98d.svg" alt="">
+                        </div>
+
+                        <div class="opciones-perfil" id="opcionesPerfil">
+                            <div class="contenido-perfil" id = "contenidoPerfil"><a href="" target="_blank"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="hero">
+        <div class="container-formulario">
+            <div class="titulo-formulario">
+              <h2 class="titulo__formulario">Formulario registro de ventas</h2>
+            </div>
+            <div class="contenido-formulario">
+              <div class="formulario-contenido" id="formulario">
+                <label >Fecha: 
+                    <input type="date" name="fecha" id="fecha"/>
+                </label>
+
+                <label >Hora: 
+                    <input type="time" placeholder="Hora" id="hora" step="1" />
+                </label>
+                <label >Compañia: 
+                    <select name="select" id="compañia">
+                        <option value="Iberdrola" selected>Iberdrola</option>
+                        <option value="Naturgy">Naturgy</option>
+                    </select>
+                </label>
+
+                <label >Fecha ingreso venta: 
+                    <input type="date" name="fecha Venta" id="fechaVenta" />
+                </label>
+                
+                
+                <label >Nombre: 
+                    <input type="text" placeholder="Nombre" id="nombre"/>
+                </label>
+               
+                <label >DNI: 
+                    <input type="text" placeholder="DNI" id="dni" />
+                </label>
+                
+                <label >Telefono: 
+                    <input type="text" placeholder="Telefono" id="telefono">
+                </label>
+
+                <label >Correo: 
+                    <input type="email" name="email" id="correo" placeholder="Correo electronico"/>
+                </label>
+
+                <label >Dirección:
+                    <input type="text" placeholder="Dirección" id="direccion"/>
+                </label>
+                
+                <label >Fecha de nacimiento: 
+                    <input type="date" name="fecha" id="fechaNacimiento" />
+                </label>
+                
+                <label >CUPS Luz: 
+                    <input type="text" name="luz" id="cupsLuz" placeholder="CUPS Luz"/>
+                </label>
+               
+                <label >CUPS Gas: 
+                    <input type="text" name="luz" id="cupsGas" placeholder="CUPS Gas"/>
+                </label>
+
+                <label >IBAN: 
+                    <input type="text" placeholder="IBAN" id="iban">
+                </label>
+
+                <label >Base de datos: 
+                    <select name="select" id="datos">
+                        <option value="Leaddesk" selected>Leaddesk</option>
+                        <option value="Base propia">Base propia</option>
+                    </select>
+                </label>
+
+                <label >Observaciones venta: 
+                    <input type="text" placeholder="Observaciones" id="observaciones">
+                </label>
+
+                <label >Número del contrato: 
+                    <input type="text" placeholder="Número del contrato" id="numeroContrato">
+                </label>
+  
+              </div>
+              <div class="botones-formulario">
+                  <button type="submit" id="enviar">Enviar información <i class="fa-solid fa-paper-plane"></i></button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="../js/formulario/formulario.js" type="module"></script>
+    <!-- <script src="../js/index.js" type="module"></script> -->
+    <script src="https://kit.fontawesome.com/1a5bcd4a97.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

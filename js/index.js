@@ -115,7 +115,7 @@ const Vista = {
           </div>
 
           <div class="texto">
-              <button><a href= "../index.html">Ventas</a></button>
+              <button><a href= "./pages/formulario_ventas.html">Ventas</a></button>
           </div>
         </div>
 
