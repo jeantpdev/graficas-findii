@@ -4,31 +4,22 @@ import config from './supabase/keys.js';
 const Modelo = {
 
   async traerVentasRealizadasAgente(cedula) {
-    const datos_insertar_bd = {
-      cedula: cedula,
-    }
-
     //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
     const res = axios({
-      method: "POST",
-      url: "http://127.0.0.1:5000/ventas-realizadas-agente",
+      method: "GET",
+      url: "http://127.0.0.1:5000/mostrar-ventas-realizadas/"+cedula,
       headers: config.headers,
-      data: datos_insertar_bd,
     });
     return res
   },
 
   async traerDatosPersonalesAgente(cedula) {
-    const datos_insertar_bd = {
-      cedula: cedula,
-    }
 
     //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
     const res = axios({
-      method: "POST",
-      url: "http://127.0.0.1:5000/datos-personales-agente",
+      method: "GET",
+      url: "http://127.0.0.1:5000/mostrar-datos-personales/"+cedula,
       headers: config.headers,
-      data: datos_insertar_bd,
     });
     return res
   }
@@ -61,14 +52,15 @@ const Vista = {
   datosEstadisticos(res) {
 
     const cant_ventas_totales_realizadas = res.data.cant_ventas_realizadas
-    const cant_ventas_totales_octubre = res.data.cant_ventas_octubre
     const cant_ventas_totales_noviembre = res.data.cant_ventas_noviembre
     const cant_ventas_totales_diciembre = res.data.cant_ventas_diciembre
+    const cant_ventas_totales_enero = res.data.cant_ventas_enero
+
 
     this.llenarCuadroVentasTotales(cant_ventas_totales_realizadas, "Ventas totales realizadas")
-    this.llenarCuadroVentasTotales(cant_ventas_totales_octubre, "Ventas Octubre")
     this.llenarCuadroVentasTotales(cant_ventas_totales_noviembre, "Ventas Noviembre")
     this.llenarCuadroVentasTotales(cant_ventas_totales_diciembre, "Ventas Diciembre")
+    this.llenarCuadroVentasTotales(cant_ventas_totales_enero, "Ventas Enero")
   },
 
   datosAgente(res) {
@@ -209,10 +201,10 @@ const Vista = {
     const myChart = document.getElementById('myChart')
     const dona = document.getElementById('myDona')
     
-    const mesActual = parseInt(res.data.cant_ventas_diciembre)
+    const mesActual = parseInt(res.data.cant_ventas_enero)
 
-    const datos_barra = [res.data.cant_ventas_octubre, res.data.cant_ventas_noviembre, res.data.cant_ventas_diciembre]
-    const labels_barra = ['Octubre', 'Noviembre', 'Diciembre']
+    const datos_barra = [res.data.cant_ventas_noviembre, res.data.cant_ventas_diciembre, mesActual]
+    const labels_barra = ['Noviembre', 'Diciembre', 'Enero']
     this.crearGrafico(myChart, labels_barra, datos_barra, 'bar')
 
     const datos_dona = [mesActual, 23 - mesActual]
@@ -222,7 +214,7 @@ const Vista = {
     const tituloGrafica = document.getElementById('tituloGrafica')
     tituloGrafica.innerHTML =
     `
-    <p>Ventas mes actual =  ${res.data.cant_ventas_diciembre}/23</p>
+    <p>Ventas mes actual =  ${mesActual}/23</p>
     `;
   }
 

@@ -8,7 +8,7 @@
     background-color: rgb(192, 22, 22);
     color:white
 }
-button{
+.boton-formulario{
     height: 6vh;
     width: 15vw;
     background: #5d17eb;
@@ -18,50 +18,20 @@ button{
     cursor: pointer;
     margin: 15px;
 }
-button:hover{
+.boton-formulario:hover{
     color: black;
     background: white;
     border: 1px solid;
     
 }
-.contenedor-todo{
-    display: grid;
-    grid-template-areas: 
-    "informacion formulario";
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    justify-content: space-evenly;
+.container-formulario{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
     align-items: center;
-    height: 80vh;
-    background-color: transparent;
-    padding: 20px;
-}
-.container-derecha{
-    grid-area: informacion;
-    display: grid;
-    grid-template-areas: 
-    "concepto";
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    
 }
 
-.contenido-derecha-texto{
-    grid-area: concepto;  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40vw;
-}
-.contenido-derecha-texto p{
-    text-align: center;
-   
-}
-.container-formulario{
-    grid-area: formulario;
-}
-.container-formulario{
+.contenedor-formulario{
     display: grid;
     grid-template-areas: 
     "titulo"
@@ -70,7 +40,7 @@ button:hover{
     align-items: center;
     background-color: rgb(255, 255, 255);
     height: auto;
-    width: 40vw;
+    width: 35vw;
     padding: 15px;
 }
 .titulo-formulario{
@@ -84,9 +54,6 @@ button:hover{
     "botones";
     justify-content: center;
     align-items: center;
-    height: 83vh;
-    overflow: auto;
-    
 }
 .formulario-contenido{
     grid-area: formulario;
@@ -99,6 +66,7 @@ button:hover{
     margin: 20px;
 }
 .titulo__formulario{
+    padding: 0 0 2vw 0;
     font-size: 2.2vw;
     text-align: center;
 }
@@ -109,7 +77,7 @@ button:hover{
     margin: 10px;
     width: auto; 
     height: 5vh;
-    width: 35vw;
+    width: 35.3vw;
     padding-left: 10px;
     border: transparent;
     border-bottom: 1px solid #191919;
@@ -122,7 +90,7 @@ button:hover{
     margin: 15px;
     width: auto; 
     height: 5vh;
-    width: 36vw;
+    width: 35vw;
     padding-left: 10px;
     border: transparent;
     border-bottom: 1px solid #191919;
@@ -130,4 +98,38 @@ button:hover{
 }
 .contenido-formulario select:focus{
     outline: none;
+}
+@media only screen and (max-width: 700px) {
+    
+    .boton-formulario{
+    height: 7vh;
+    width: 41vw;
+    font-size: 3vw;
+    margin: 5px;
+    
+    }
+    .contenido-formulario{
+        justify-content: center;
+    }
+    .titulo__formulario{
+        font-size: 4.5vw;
+        text-align: center;
+    }
+    .contenido-formulario label{
+        text-align: left;
+        font-size: 3vw;
+    }
+    .contenido-formulario input{
+       width: 87vw;
+        font-size: 3vw;
+    }
+    .contenido-formulario input:focus{
+        outline: none;
+    }
+    .contenido-formulario select{
+        width: 86vw;
+        font-size: 3vw;
+    }
+   
+    
 }

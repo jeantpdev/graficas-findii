@@ -1,6 +1,5 @@
 import config from '../supabase/keys.js';
 
-
 //Modelo que recibe los datos y los envia a la base de datos
 const Modelo = {
     async iniciar_seion(correo, password) {
@@ -13,28 +12,12 @@ const Modelo = {
         //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
         const res = axios({
             method: "POST",
-            url: "http://127.0.0.1:5000/login",
+            url: "http://127.0.0.1:5000/iniciar-sesion",
             headers: config.headers,
             data: datos_insertar_bd,
         });
         return res
     },
-
-    async traer_datos_agente() {
-        const datos_insertar_bd = {
-            cedula: cedula,
-        }
-
-        //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
-        const res = axios({
-            method: "POST",
-            url: "http://127.0.0.1:5000/login",
-            headers: config.headers,
-            data: datos_insertar_bd,
-        });
-        return res
-
-    }
 }
 
 const Vista = {
@@ -103,23 +86,6 @@ const Controlador = {
             console.log(err);
         }
     },
-
-    async cargar_datos_agente() {
-        const datos_insertar_bd = {
-            cedula: cedula,
-        }
-
-        //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
-        const res = axios({
-            method: "POST",
-            url: "http://127.0.0.1:5000/login",
-            headers: config.headers,
-            data: datos_insertar_bd,
-        });
-        return res
-
-    }
-
 
 }
 
