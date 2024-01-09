@@ -1,7 +1,16 @@
-import config from './supabase/keys.js';
+import config from '../supabase/keys.js';
 
 //Modelo que recibe los datos y los envia a la base de datos
 const Modelo = {
+
+  async ventasPorLiderEquipo(nombre_lider_equipo){
+    const res = axios({
+      method: "GET",
+      url:'http://127.0.0.1:5000/info-equipo/'+nombre_lider_equipo,
+      headers: config.headers,
+    });
+    return res
+  },
 
   async traerVentasRealizadasAgente(cedula) {
     //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
@@ -49,17 +58,12 @@ const Vista = {
     datos.append(contenidoDatos)
   },
 
-  datosEstadisticos(res) {
+  datosEstadisticos(ventas_miguel, ventas_ray, ventas_davina, ventas_laureano) {
+    console.log(ventas_miguel.data)
+    const cant_ventas_miguel = ventas_miguel.data['cant_ventas_realizadas']
 
-    const cant_ventas_totales_realizadas = res.data.cant_ventas_realizadas
-    const cant_ventas_totales_noviembre = res.data.cant_ventas_noviembre
-    const cant_ventas_totales_diciembre = res.data.cant_ventas_diciembre
-    const cant_ventas_totales_enero = res.data.cant_ventas_enero
+    console.log(cant_ventas_miguel)
 
-
-    this.llenarCuadroVentasTotales(cant_ventas_totales_noviembre, "Ventas Noviembre")
-    this.llenarCuadroVentasTotales(cant_ventas_totales_diciembre, "Ventas Diciembre")
-    this.llenarCuadroVentasTotales(cant_ventas_totales_enero, "Ventas Enero")
   },
 
   datosAgente(res) {
@@ -102,11 +106,21 @@ const Vista = {
 
         <div class="enlace">
           <div class="icono">
-              <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-people-group"></i>
           </div>
 
           <div class="texto">
-              <button><a href= "./pages/formulario_ventas.html">Añadir Venta</a></button>
+              <button><a href= "./equipo.html">Equipos</a></button>
+          </div>
+        </div>
+
+        <div class="enlace">
+          <div class="icono">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+
+          <div class="texto">
+              <button><a href= "./pages/formulario_ventas.html">Ventas</a></button>
           </div>
         </div>
 
@@ -173,55 +187,82 @@ const Vista = {
     });
   },
 
-  mostrarGraficas(res){
-    console.log(res.data)
+  crearGraficoLineas(myChart, ventasMiguel, ventasRay, ventasDavina, ventasLaureano){
+
+    new Chart(myChart, {
+      type: 'line',
+      data: {
+        labels: ['Octubre', 'Noviembre', 'Diciembre', 'Enero'],
+        datasets: [
+          {
+            label: 'Ventas Miguel',
+            data: ventasMiguel,
+            borderWidth: 1
+          },
+          {
+            label: 'Ventas Ray',
+            data: ventasRay,
+            borderWidth: 1
+          },
+          {
+            label: 'Ventas Davina',
+            data: ventasDavina,
+            borderWidth: 1
+          },
+          {
+            label: 'Ventas Laureano',
+            data: ventasLaureano,
+            borderWidth: 1
+          },        
+      ],
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Line Chart'
+          }
+        }
+      },
+      },
+    });
+  },
+
+  mostrarGraficas(ventas_miguel, ventas_ray, ventas_davina, ventas_laureano){
+
     const myChart = document.getElementById('myChart')
-    const dona = document.getElementById('myDona')
-    
-    const mesActual = parseInt(res.data.cant_ventas_enero)
 
-    const datos_barra = [res.data.cant_ventas_noviembre, res.data.cant_ventas_diciembre, mesActual]
-    const labels_barra = ['Noviembre', 'Diciembre', 'Enero']
-    this.crearGrafico(myChart, labels_barra, datos_barra, 'bar')
+    const ventasMiguel = [ventas_miguel.data['cant_ventas_octubre'], ventas_miguel.data['cant_ventas_noviembre'], ventas_miguel.data['cant_ventas_diciembre'], ventas_miguel.data['cant_ventas_enero']] 
+    const ventasRay = [ventas_ray.data['cant_ventas_octubre'], ventas_ray.data['cant_ventas_noviembre'], ventas_ray.data['cant_ventas_diciembre'], ventas_ray.data['cant_ventas_enero']] 
+    const ventasDavina = [ventas_davina.data['cant_ventas_octubre'], ventas_davina.data['cant_ventas_noviembre'], ventas_davina.data['cant_ventas_diciembre'], ventas_davina.data['cant_ventas_enero']] 
+    const ventasLaureano = [ventas_laureano.data['cant_ventas_octubre'], ventas_laureano.data['cant_ventas_noviembre'], ventas_laureano.data['cant_ventas_diciembre'], ventas_laureano.data['cant_ventas_enero']] 
 
-    const datos_dona = [mesActual, 23 - mesActual]
-    const labels_dona = ['Ventas realizadas', 'Ventas por cumplir']
-    this.crearGrafico(dona, labels_dona, datos_dona, 'doughnut')
+    this.crearGraficoLineas(myChart, ventasMiguel, ventasRay, ventasDavina, ventasLaureano)
 
-    const tituloGrafica = document.getElementById('tituloGrafica')
-    tituloGrafica.innerHTML =
-    `
-    <p>Ventas mes actual =  ${mesActual}/23</p>
-    `;
   }
 
 }
 
 const Controlador = {
 
-  async ventasRealizadasAgente() {
-    const res = await Modelo.traerVentasRealizadasAgente(localStorage.getItem('cedula'))
-    Vista.datosEstadisticos(res)
-  },
+  async ventasPorLiderEquipo() {
+    const ventas_miguel = await Modelo.ventasPorLiderEquipo('miguel')
+    const ventas_ray = await Modelo.ventasPorLiderEquipo('ray')
+    const ventas_davina = await Modelo.ventasPorLiderEquipo('davina')
+    const ventas_laureano = await Modelo.ventasPorLiderEquipo('laureano')
 
-  async datosAgente() {
-    const res = await Modelo.traerDatosPersonalesAgente(localStorage.getItem('cedula'))
-    Vista.datosAgente(res)
-  },
+    Vista.mostrarGraficas(ventas_miguel, ventas_ray, ventas_davina, ventas_laureano)
+    Vista.datosEstadisticos(ventas_miguel, ventas_ray, ventas_davina, ventas_laureano)
 
-  async datosAgenteGraficas() {
-    const res = await Modelo.traerVentasRealizadasAgente(localStorage.getItem('cedula'))
-    Vista.mostrarGraficas(res)
   },
-
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  Controlador.ventasRealizadasAgente();
-  Controlador.datosAgente();
   Vista.opcionesMenu();
-  Controlador.datosAgenteGraficas();
-
+  Controlador.ventasPorLiderEquipo();
 })
 
 function horaActual() {

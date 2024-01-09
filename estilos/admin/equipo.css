@@ -1,0 +1,53 @@
+@import url(../config/global.css);
+@import url(../menu.css);
+
+.cabecera .nombre-lider p{
+    font-size: 3vw;
+    font-weight: 600;
+}
+
+.cuerpo{
+    display: grid;
+    grid-template-areas: 
+    "estadisticas agentes"
+    "ventas agentes";
+    grid-template-columns: 70%;
+}
+
+.cuerpo .estadisticas{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+.cuerpo .estadisticas .graficas{
+    width: 30vw;
+}
+
+.cuerpo .estadisticas .indicadores{
+    padding: 1vw 0;
+}
+
+.cuerpo .agentes{
+
+}
+
+.cuerpo .agentes .contenedor-agentes{
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 2vw;
+}
+
+.cuerpo .agentes .contenedor-agentes .agente{
+    display: flex;
+    align-items: center;
+    column-gap: 2vw;
+}
+
+.cuerpo .agentes .contenedor-agentes .agente .foto img{
+    height: 5vh;
+}
+
+.cuerpo .lista-ventas{
+    background-color: beige;
+}

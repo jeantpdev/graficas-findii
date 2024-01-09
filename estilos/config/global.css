@@ -24,6 +24,9 @@ button{
     --fondo: #f2f2f2;
     --blanco: #ffffff;
     --negro: #191919;
+    --primario: #5d17eb;
+    --hover-primario: #5315ce;
+    --gris: #EFF0F8;
 }
 
 input[type=text],
@@ -43,4 +46,12 @@ select {
     border: none;
     width: 10vw;
     padding: 0.5vw 1vw;
+}
+
+.hero {
+    color: #191919;
+}
+
+.hero .pagina-principal {
+    padding: 5vh 5vw;
 }

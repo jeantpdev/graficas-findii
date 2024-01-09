@@ -1,0 +1,258 @@
+@import url(./config/global.css);
+@import url(./menu2.css);
+
+
+body{
+    background-color: #EFF0F8;
+}
+
+.pagina .contenedor {
+    padding: 2vw;
+    display: grid;
+    grid-template-areas:
+        "estadisticas opciones"
+        "tabla opciones";
+    grid-template-columns: 0.2fr 1fr;
+    column-gap: 2vw;
+    row-gap: 5vh;
+}
+
+.contenedor .graficas{
+    grid-area: graficas;
+}
+
+.cont-grafica {
+    padding: 1vw 2vw;
+    border-radius: 0.5vw;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+}
+
+.graficas .contenido-graficas {
+    display: grid;
+    grid-template-areas:
+        "ventas-mes ventas-realizar";
+    justify-content: space-between;
+}
+
+.graficas .ventas-mes {
+    grid-area: ventas-mes;
+}
+
+.titulo-grafica {
+    padding: 0.5vw;
+    border-bottom: 1px solid rgb(233, 231, 231);
+}
+
+.titulo-grafica p {
+    font-size: 3vh;
+    font-weight: 600;
+    color: #00000088;
+}
+
+.grafica-ventas-mes #myChart {
+    width: 40vw;
+}
+
+.graficas .ventas-realizar {
+    grid-area: ventas-realizar;
+}
+
+.ventas-realizar #myDona {
+    height: 20vh;
+}
+
+.contenedor .datos-estadisticos{
+    grid-area: estadisticas;
+}
+
+.datos-estadisticos .contenido-datos-estadisticos {
+    display: flex;
+    column-gap: 2vw;
+    justify-content: flex-start;
+}
+
+.contenido-datos-estadisticos .estadistica {
+    display: grid;
+    grid-template-areas:
+        "valor icono"
+        "titulo titulo";
+    background-color: #ffffff;
+    padding: 0.5vw 1.5vw;
+    column-gap: 2vw;
+    border-radius: 0.5vw;
+    justify-content: space-between;
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.08);
+    height: 10vh;
+    width: 15vw;
+}
+
+.estadistica .titulo {
+    grid-area: titulo;
+}
+
+.estadistica .titulo p {
+    color: #00000088;
+    font-weight: 600;
+    font-size: 1.9vh;
+}
+
+.estadistica .valor {
+    grid-area: valor;
+}
+
+.estadistica .valor p {
+    font-size: 4vh;
+    font-weight: 700;
+}
+
+.estadistica .icono {
+    display: flex;
+    align-items: center;
+    grid-area: icono;
+    color: #030303;
+}
+
+.estadistica .icono i{
+    font-size: 5vh;
+}
+
+.pagina .contenedor .opciones{
+    grid-area: opciones;
+}
+
+/* TABLA */
+.pagina .contenedor .contenido-tabla {
+    grid-area: tabla;
+    display: flex;
+    flex-direction: column;
+    /* margin: 1vw; */
+    /* padding: 0 2vw; */
+    row-gap: 1.5vw;
+}
+
+.pagina .contenedor .contenido-tabla .cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pagina .contenedor .contenido-tabla .cabecera .botones {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1vw;
+}
+
+.pagina .contenedor .contenido-tabla .cabecera .botones button {
+    background-color: var(--primario);
+    padding: 0.5vw;
+    color: var(--blanco);
+    border-radius: 0.5vw;
+    font-size: 1.1vw;
+}
+
+.pagina .contenedor .contenido-tabla .cabecera .botones a {
+    color: var(--blanco);
+
+}
+
+
+.pagina .contenedor .contenido-tabla .cabecera .botones button:hover {
+    background-color: var(--hover-primario)
+}
+
+.pagina .contenedor .contenido-tabla .cabecera .titulo p {
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.no-padding {
+    padding: 1vw;
+    border: none;
+}
+
+.pagina .contenedor .contenido-tabla .tabla {
+    overflow: auto;
+    height: 40vh;
+    background-color: #ffffff;
+}
+
+.pagina .contenedor .contenido-tabla .tabla {
+    text-align: center;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+    padding: 0.2vw;
+}
+
+.pagina .contenedor .contenido-tabla .tabla th,
+td {
+    padding: 0.7vw 2vw;
+}
+
+.pagina .contenedor .contenido-tabla .tabla td {
+    overflow: hidden;
+    /* Otra opción es ocultar el contenido que excede el ancho máximo */
+    text-overflow: ellipsis;
+    /* Agrega puntos suspensivos (...) para indicar que hay más contenido oculto */
+    white-space: nowrap;
+    max-width: 6.5vw;
+}
+
+.pagina .contenedor .contenido-tabla .tabla table tbody tr td {
+    width: 10%;
+}
+
+/* FIN TABLA */
+
+.contenedor .opciones .tarjetas{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+.contenedor .opciones .tarjetas .tarjeta{
+    background-color: #ffffff;
+    display: flex;
+    padding: 1.2vw 1vw;
+    border-radius: 0.5vw;
+    height: 20vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tarjeta .cabecera{
+    display: flex;
+    column-gap: 2vw;
+}
+
+.tarjeta .cabecera .icono i{
+    font-size: 2vw;
+}
+
+.tarjeta .cabecera .titulo p{
+    font-size: 1.2vw;
+    font-weight: 600;
+}
+
+.tarjeta .cuerpo .descripcion p{
+    font-size: 1vw;
+}
+
+.tarjeta .pie{
+    text-align: end;
+}
+
+.tarjeta .pie a{
+    background-color: var(--primario);
+    color: var(--blanco);
+    padding: 0.5vw;
+    border-radius: 0.5vw;
+    font-size: 1.1vw;
+}
+
+.tarjeta .pie a:hover {
+    background-color: var(--hover-primario);
+}
+

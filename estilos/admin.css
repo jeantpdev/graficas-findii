@@ -1,8 +1,16 @@
 @import url(./config/global.css);
 @import url(./menu.css);
 
+.hero {
+    color: #191919;
+    background-color: #ffffff;
+}
 
-.hero .pagina-principal .grilla {   
+.hero .pagina-principal {
+    padding: 5vh 5vw;
+}
+
+.hero .pagina-principal .grilla {
     display: flex;
     flex-direction: column;
     row-gap: 3vh;
@@ -101,7 +109,7 @@
 }
 
 .grafica-ventas-mes #myChart {
-    width: 40vw;
+    width: 50vw;
 }
 
 .graficas .ventas-realizar {

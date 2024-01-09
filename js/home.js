@@ -1,7 +1,17 @@
-import config from '../supabase/keys.js';
+import config from './supabase/keys.js';
 
-//Modelo que recibe los datos y los envia a la base de datos
 const Modelo = {
+
+    async traerVentasRealizadasAgente(cedula) {
+        //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
+        const res = axios({
+            method: "GET",
+            url: "http://127.0.0.1:5000/mostrar-ventas-realizadas/" + cedula,
+            headers: config.headers,
+        });
+        return res
+    },
+
     async traerDatosPersonalesAgente(cedula) {
 
         //se almacena la respuesta en "res" para obtener el resultado de la petición y retornarla para mostrar en la vista
@@ -12,9 +22,64 @@ const Modelo = {
         });
         return res
     }
+
+}
+
+const Controlador = {
+
+    async ventasRealizadasAgente() {
+        const res = await Modelo.traerVentasRealizadasAgente(localStorage.getItem('cedula'))
+        Vista.mostrarTablaDatos(res)
+        Vista.datosEstadisticos(res)
+    },
+
+    async datosAgente() {
+        const res = await Modelo.traerDatosPersonalesAgente(localStorage.getItem('cedula'))
+        Vista.datosAgente(res)
+    },
+
+    async datosAgenteGraficas() {
+        const res = await Modelo.traerVentasRealizadasAgente(localStorage.getItem('cedula'))
+        Vista.mostrarGraficas(res)
+      },
+
+
 }
 
 const Vista = {
+
+    llenarCuadroVentasTotales(cant_venta_totales, titulo) {
+        const datos = document.getElementById("contenedorDatos")
+        const contenidoDatos = document.createElement('div')
+
+        contenidoDatos.classList.add("estadistica")
+        contenidoDatos.innerHTML = `
+            <div class="titulo">
+                <p>${titulo}</p>
+            </div>
+             
+            <div class="valor">
+               <p>${cant_venta_totales}</p>
+            </div>
+    
+            <div class="icono">
+               <i class="fa-solid fa-money-check-dollar"></i>
+            </div>
+        `
+        datos.append(contenidoDatos)
+    },
+
+    datosEstadisticos(res) {
+
+        const cant_ventas_totales_realizadas = res.data.cant_ventas_realizadas
+        const cant_ventas_totales_noviembre = res.data.cant_ventas_noviembre
+        const cant_ventas_totales_diciembre = res.data.cant_ventas_diciembre
+        const cant_ventas_totales_enero = res.data.cant_ventas_enero
+
+        this.llenarCuadroVentasTotales(cant_ventas_totales_noviembre, "Ventas Noviembre")
+        this.llenarCuadroVentasTotales(cant_ventas_totales_diciembre, "Ventas Diciembre")
+        this.llenarCuadroVentasTotales(cant_ventas_totales_enero, "Ventas Enero")
+    },
 
     datosAgente(res) {
 
@@ -51,7 +116,7 @@ const Vista = {
                             </div>
 
                             <div class="texto">
-                                <button><a href= "../home.html">Mis estadisticas</a></button>
+                                <button><a href= "./home.html">Mis estadisticas</a></button>
                             </div>
                         </div>
 
@@ -61,7 +126,7 @@ const Vista = {
                             </div>
                     
                             <div class="texto">
-                                <button><a href= "./perfil.html">Mi perfil</a></button>
+                                <button><a href= "./pages/perfil.html">Mi perfil</a></button>
                             </div>
                         </div>
 
@@ -71,7 +136,7 @@ const Vista = {
                             </div>
                     
                             <div class="texto">
-                                <button><a href= "./team_leader/inicio_team_leader.html">Mi equipo</a></button>
+                                <button><a href= "./pages/team_leader/inicio_team_leader.html">Mi equipo</a></button>
                             </div>
                         </div>
 
@@ -81,7 +146,7 @@ const Vista = {
                         </div>
             
                         <div class="texto">
-                            <button><a href= "./formulario_ventas.html">Añadir Venta</a></button>
+                            <button><a href= "./pages/formulario_ventas.html">Añadir Venta</a></button>
                         </div>
                     </div>
                         </div>
@@ -110,7 +175,8 @@ const Vista = {
                         </div>
                     </div>      
                 `;
-            } else {
+            } 
+            if (localStorage.getItem('rol') == "agente"){
                 contenidoPerfil.innerHTML =
                 `
           <div class="enlaces">
@@ -120,7 +186,7 @@ const Vista = {
                 </div>
 
                 <div class="texto">
-                    <button><a href= "../home.html">Inicio</a></button>
+                    <button><a href= "./home.html">Inicio</a></button>
                 </div>
             </div>
 
@@ -130,7 +196,7 @@ const Vista = {
               </div>
     
               <div class="texto">
-                <button><a href= "./perfil.html">Mi perfil</a></button>
+                <button><a href= "./pages/perfil.html">Mi perfil</a></button>
               </div>
             </div>
 
@@ -140,7 +206,7 @@ const Vista = {
             </div>
   
             <div class="texto">
-                <button><a href= "./formulario_ventas.html">Añadir Venta</a></button>
+                <button><a href= "./pages/formulario_ventas.html">Añadir Venta</a></button>
             </div>
           </div>
             </div>
@@ -175,146 +241,84 @@ const Vista = {
             const botonCerrarSesion = document.getElementById('cerrarSesion')
             botonCerrarSesion.onclick = function () {
                 localStorage.clear()
-                location.href = ("./login.html");
+                location.href = ("./pages/login.html");
             }
 
         } else {
-            location.href = ("./login.html");
+            location.href = ("./pages/login.html");
         }
     },
 
-    mostrarDatosUsuario(res) {
+    mostrarTablaDatos(response) {
+        const datos = response.data['ventas_realizadas'];
+        console.log(datos);
+        const tablaDatos = document.getElementById('tablaDatos');
+        tablaDatos.innerHTML = '';
 
-        const datos = res.data
-
-        const apodo = datos['apodo']
-        const campana = datos['campana']
-        const cedula = datos['cedula']
-        const celular = datos['celular']
-        const correo = datos['correo']
-        const estado = datos['estado']
-        const grupo = datos['grupo']
-        const lider_equipo = datos['lider_equipo']
-        const lider_responsable = datos['lider_responsable']
-        const nombre = datos['nombre']
-        const rol = datos['rol']
+        // Definir las columnas que deseas mostrar
+        const columnasAMostrar = ['fecha_ingreso_venta', 'compania', 'dni', 'nombre', 'observaciones_venta'];
 
 
-        const informacionPerfil = document.getElementById('informacionPerfil')
-        informacionPerfil.innerHTML =
-            `
-            <div class="campo">
-                <div class="titulo">
-                    <p>Cédula:</p>
-                </div>
-                <div class="texto nombre">
-                    <p>${cedula}</p>
-                </div>
-            </div>
+        // Crear encabezado
+        const encabezadoRow = document.createElement('tr');
+        for (const columna of columnasAMostrar) {
+            const th = document.createElement('th');
+            th.textContent = columna;
+            encabezadoRow.appendChild(th);
+        }
+        tablaDatos.appendChild(encabezadoRow);
 
-            <div class="campo">
-                <div class="titulo">
-                    <p>Apodo:</p>
-                </div>
-                <div class="texto direccion">
-                    <p>${apodo}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Nombre:</p>
-                </div>
-                <div class="texto nombre">
-                    <p>${nombre}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Correo:</p>
-                </div>
-                <div class="texto correo">
-                    <p>${correo}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Celular:</p>
-                </div>
-                <div class="texto celular">
-                    <p>${celular}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Campaña:</p>
-                </div>
-                <div class="texto nombre">
-                    <p>${campana}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Estado:</p>
-                </div>
-                <div class="texto sexo">
-                    <p>${estado}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Grupo:</p>
-                </div>
-                <div class="texto fecha">
-                    <p>${grupo}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Lider Equipo:</p>
-                </div>
-                <div class="texto direccion">
-                    <p>${lider_equipo}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Lider responsable:</p>
-                </div>
-                <div class="texto direccion">
-                    <p>${lider_responsable}</p>
-                </div>
-            </div>
-
-            <div class="campo">
-                <div class="titulo">
-                    <p>Rol:</p>
-                </div>
-                <div class="texto direccion">
-                    <p>${rol}</p>
-                </div>
-            </div>
-
-
-            `
+        // Crear filas de datos
+        datos.forEach(dato => {
+            const fila = document.createElement('tr');
+            for (const columna of columnasAMostrar) {
+                const celda = document.createElement('td');
+                if (columna === 'created_at') {
+                    const fechaCompleta = dato[columna];
+                    const soloFecha = fechaCompleta.split('T')[0];
+                    celda.textContent = soloFecha;
+                } else {
+                    celda.textContent = dato[columna];
+                }
+                fila.appendChild(celda);
+            }
+            tablaDatos.appendChild(fila);
+        });
     },
 
 }
 
-const Controlador = {
-    async datosAgente() {
-        const res = await Modelo.traerDatosPersonalesAgente(localStorage.getItem('cedula'))
-        Vista.datosAgente(res)
-        Vista.mostrarDatosUsuario(res)
-    },
+document.addEventListener('DOMContentLoaded', function () {
+    Controlador.ventasRealizadasAgente();
+    Controlador.datosAgente();
+    Vista.opcionesMenu();
+})
+
+function horaActual() {
+    // Función para obtener la hora actual y actualizar el elemento correspondiente
+    const currentTimeElement = document.getElementById('horaActual');
+    const now = new Date();
+    let hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+    let ampm = 'am';
+
+    // Convertir a formato de 12 horas
+    if (hours > 12) {
+        hours -= 12;
+        ampm = 'pm';
+    }
+
+    // Formato: HH:MM:SS
+    const currentTimeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+    // Actualizar el contenido del elemento
+    currentTimeElement.textContent = currentTimeString;
 }
+
+horaActual();
+setInterval(horaActual, 1000);
 
 const abrirMenuOpciones = document.getElementById('abrirMenuOpciones');
 const opcionesPerfil = document.getElementById('opcionesPerfil');
@@ -326,9 +330,3 @@ abrirMenuOpciones.onclick = function () {
         opcionesPerfil.style.display = "none";
     }
 };
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    Controlador.datosAgente();
-    Vista.opcionesMenu();
-})

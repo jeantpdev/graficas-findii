@@ -1,14 +1,17 @@
 @import url(./config/global.css);
-@import url(./menu.css);
-.btn-success{
+@import url(./menu2.css);
+
+.btn-success {
     background-color: rgb(59, 59, 193);
-    color:white
+    color: white
 }
-.btn-danger{
+
+.btn-danger {
     background-color: rgb(192, 22, 22);
-    color:white
+    color: white
 }
-.boton-formulario{
+
+.boton-formulario {
     height: 6vh;
     width: 15vw;
     background: #5d17eb;
@@ -18,24 +21,26 @@
     cursor: pointer;
     margin: 15px;
 }
-.boton-formulario:hover{
+
+.boton-formulario:hover {
     color: black;
     background: white;
     border: 1px solid;
-    
+
 }
-.container-formulario{
-    display:flex;
+
+.container-formulario {
+    display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
 
-.contenedor-formulario{
+.contenedor-formulario {
     display: grid;
-    grid-template-areas: 
-    "titulo"
-    "contenido";
+    grid-template-areas:
+        "titulo"
+        "contenido";
     justify-content: center;
     align-items: center;
     background-color: rgb(255, 255, 255);
@@ -43,39 +48,46 @@
     width: 35vw;
     padding: 15px;
 }
-.titulo-formulario{
+
+.titulo-formulario {
     grid-area: titulo;
 }
-.contenido-formulario{
+
+.contenido-formulario {
     grid-area: contenido;
     display: grid;
-    grid-template-areas: 
-    "formulario"
-    "botones";
+    grid-template-areas:
+        "formulario"
+        "botones";
     justify-content: center;
     align-items: center;
 }
-.formulario-contenido{
+
+.formulario-contenido {
     grid-area: formulario;
 }
-.botones-formulario{
+
+.botones-formulario {
     grid-area: botones;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px;
 }
-.titulo__formulario{
+
+.titulo__formulario {
     padding: 0 0 2vw 0;
     font-size: 2.2vw;
     text-align: center;
 }
-.contenido-formulario label{
+
+.contenido-formulario label {
     padding-left: 15px;
 }
-.contenido-formulario input{
+
+.contenido-formulario input {
     margin: 10px;
-    width: auto; 
+    width: auto;
     height: 5vh;
     width: 35.3vw;
     padding-left: 10px;
@@ -83,12 +95,14 @@
     border-bottom: 1px solid #191919;
     font-size: 1.2vw;
 }
-.contenido-formulario input:focus{
+
+.contenido-formulario input:focus {
     outline: none;
 }
-.contenido-formulario select{
+
+.contenido-formulario select {
     margin: 15px;
-    width: auto; 
+    width: auto;
     height: 5vh;
     width: 35vw;
     padding-left: 10px;
@@ -96,40 +110,48 @@
     border-bottom: 1px solid #191919;
     font-size: 1.2vw;
 }
-.contenido-formulario select:focus{
+
+.contenido-formulario select:focus {
     outline: none;
 }
+
 @media only screen and (max-width: 700px) {
-    
-    .boton-formulario{
-    height: 7vh;
-    width: 41vw;
-    font-size: 3vw;
-    margin: 5px;
-    
+
+    .boton-formulario {
+        height: 7vh;
+        width: 41vw;
+        font-size: 3vw;
+        margin: 5px;
+
     }
-    .contenido-formulario{
+
+    .contenido-formulario {
         justify-content: center;
     }
-    .titulo__formulario{
+
+    .titulo__formulario {
         font-size: 4.5vw;
         text-align: center;
     }
-    .contenido-formulario label{
+
+    .contenido-formulario label {
         text-align: left;
         font-size: 3vw;
     }
-    .contenido-formulario input{
-       width: 87vw;
+
+    .contenido-formulario input {
+        width: 87vw;
         font-size: 3vw;
     }
-    .contenido-formulario input:focus{
+
+    .contenido-formulario input:focus {
         outline: none;
     }
-    .contenido-formulario select{
+
+    .contenido-formulario select {
         width: 86vw;
         font-size: 3vw;
     }
-   
-    
+
+
 }

@@ -10,38 +10,38 @@
     <title>Formulario ventas Findii</title>
 </head>
 <body>
+
     <header>
-        <div class="menu">
-            <div class="contenido-menu">
-                <div class="lado-izquierdo">
-                    <div class="contenido-izquierda">
-                        <div class="banner-findii">
-                            <img src="../img/FINDII.png" alt="">
-                        </div>
-                        <div class="hora-actual" >
-                            <p id="horaActual"></p>
-                        </div>
-                    </div>
+        <nav class="menu">
+            <div class="izquierda">
+                <div class="logo-empresa">
+                    <img src="../img/FINDII.png" alt="">
                 </div>
-
-                <div class="lado-derecho">
-                    <div class="contenido-derecha">
-                        <div class="nombre-usuario" id = "menuNombreAgente"> </div>
-                        <div class="rol-usuario" id = "menuRolUsuario"> </div>
-                        <div class="imagen" id="abrirMenuOpciones">
-                            <img src="../img/undraw_male_avatar_g98d.svg" alt="">
-                        </div>
-
-                        <div class="opciones-perfil" id="opcionesPerfil">
-                            <div class="contenido-perfil" id = "contenidoPerfil"><a href="" target="_blank"></a>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="hora-actual">
+                    <p id="horaActual"></p>
                 </div>
             </div>
-        </div>
+            <div class="derecha">
+
+                <div class="datos-agente">
+                    <div class="nombre-usuario" id="menuNombreAgente"> </div>
+                    <div class="rol-usuario" id="menuRolUsuario"> </div>
+                </div>
+
+                <div class="foto-usuario" id="abrirMenuOpciones">
+                    <img src="../img/undraw_male_avatar_g98d.svg" alt="">
+                </div>
+
+                <div class="opciones-perfil" id="opcionesPerfil">
+                    <div class="contenido-perfil" id="contenidoPerfil">
+                        <a href="" target="_blank"></a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
     </header>
+    
     <div class="hero">
         
         <div class="container-formulario">
@@ -138,7 +138,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="../js/formulario/formulario.js" type="module"></script>
-    <script src="../js/index.js" type="module"></script>
     <script src="https://kit.fontawesome.com/1a5bcd4a97.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

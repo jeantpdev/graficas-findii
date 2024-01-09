@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilos/estilos2.css">
+    <title>Home page</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="menu">
+            <div class="izquierda">
+                <div class="logo-empresa">
+                    <img src="./img/FINDII.png" alt="">
+                </div>
+                <div class="hora-actual">
+                    <p id="horaActual"></p>
+                </div>
+            </div>
+            <div class="derecha">
+
+                <div class="datos-agente">
+                    <div class="nombre-usuario" id="menuNombreAgente"> </div>
+                    <div class="rol-usuario" id="menuRolUsuario"> </div>
+                </div>
+
+                <div class="foto-usuario" id="abrirMenuOpciones">
+                    <img src="./img/undraw_male_avatar_g98d.svg" alt="">
+                </div>
+
+                <div class="opciones-perfil" id="opcionesPerfil">
+                    <div class="contenido-perfil" id="contenidoPerfil">
+                        <a href="" target="_blank"></a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="pagina">
+
+            <div class="contenedor">
+
+                <div class="datos-estadisticos">
+                    <div class="contenido-datos-estadisticos" id="contenedorDatos">
+                    </div>
+                </div>
+
+                <div class="contenido-tabla">
+                    <div class="cabecera">
+                        <div class="titulo">
+                            <p>Ultimas ventas realizadas</p>
+                        </div>
+                        <div class="botones">
+                            <button><i class="fa-solid fa-plus"></i><a href="./pages/formulario_ventas.html" target="_blank"> Añadir venta</a></button>
+                        </div>
+                    </div>
+
+                    <div class="tabla" id="tablaDatos">
+                        <table>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="opciones">
+                    <div class="tarjetas">
+
+                        <div class="tarjeta">
+                            <div class="cabecera">
+                                <div class="icono">
+                                    <i class="fa-solid fa-chart-pie"></i>
+                                </div>
+                                <div class="titulo">
+                                    <p>ESTADÍSTICAS</p>
+                                </div>
+                            </div>
+
+                            <div class="cuerpo">
+                                <div class="descripcion">
+                                    <p>Estadísticas mas detalladas. Incluye las ventas realizadas en los ultimos cuatro
+                                        meses, promedios semanales, diarios entre otros indicadores.</p>
+                                </div>
+                            </div>
+
+                            <div class="pie">
+                                <a href="./pages/estadisticas.html">Ver estadísticas</a>
+                            </div>
+                        </div>
+
+                        <div class="tarjeta">
+                            <div class="cabecera">
+                                <div class="icono">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </div>
+                                <div class="titulo">
+                                    <p>REPORTE DIARIO</p>
+                                </div>
+                            </div>
+
+                            <div class="cuerpo">
+                                <div class="descripcion">
+                                    <p>Reporte diario de la gestión del tiempo durante la jornada laboral.</p>
+                                </div>
+                            </div>
+
+                            <div class="pie">
+                                <a href="https://docs.google.com/forms/d/1zmWZxi-XVMlfp2KE7dv9EEhqIPYGcDDSZY75K1s4lDU/edit?pli=1" target="_blank">Llenar reporte</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/home.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/1a5bcd4a97.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

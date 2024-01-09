@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../estilos/perfil.css">
-    <link rel="shortcut icon" href="../img/descarga.ico" type="image/x-icon">
-    <title>Perfil</title>
+    <link rel="stylesheet" href="../estilos/estadisticas.css">
+    <title>Document</title>
 </head>
 
 <body>
@@ -43,37 +42,45 @@
     </header>
 
     <div class="hero">
-        <div class="contenedor">
-            <section class="perfil-usuario">
-                <div class="contenido">
+        <div class="pagina">
 
-                    <div class="titulo-central">
-                        <p>Información del agente</p>
+            <div class="contenedor">
+
+                <div class="datos-estadisticos">
+                    <div class="contenido-datos-estadisticos" id="contenedorDatos">
                     </div>
-
-                    <div class="contenedor-foto-perfil">
-                        <div class="foto-perfil">
-                            <img src="../img/undraw_male_avatar_g98d.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="contenedor-informacion">
-                        <div class="informacion-perfil" id="informacionPerfil"></div>
-
-                        <div class="botones-perfil">
-                            <button><i class="fa-solid fa-pen-to-square"></i> Editar perfil</button>
-                        </div>
-                    </div>
-
                 </div>
 
-            </section>
+                <div class="graficas">
+                    <div class="contenido-graficas">
+
+                        <div class="ventas-mes cont-grafica">
+                            <div class="titulo-grafica">
+                                <p>Venta por mes</p>
+                            </div>
+
+                            <div class="grafica-ventas-mes">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="ventas-realizar cont-grafica">
+                            <div class="titulo-grafica" id="tituloGrafica">
+
+                            </div>
+                            <div class="grafica-ventas-realizar">
+                                <canvas id="myDona"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-
-    <script src="../js/perfil/perfil.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/estadisticas.js" type="module"></script>
     <script src="https://kit.fontawesome.com/1a5bcd4a97.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>

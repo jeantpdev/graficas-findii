@@ -55,7 +55,15 @@ const Vista = {
     },
 
     redirigirAIndex() {
-        location.href = ("../index.html");
+        location.href = ("../home.html");
+    },
+
+    redirigirAdmin() {
+        location.href = ("./admin.html");
+    },
+
+    redirigirTeamLeader() {
+        location.href = ("./team_leader/inicio_team_leader.html");
     }
 }
 
@@ -69,13 +77,23 @@ const Controlador = {
             if (res.data.acceso == "AUTORIZADO") {
                 const access_token = res.data.access_token;
                 const cedula = res.data.cedula;
+                const rol = res.data.rol;
+
 
                 localStorage.setItem("access_token", access_token);
                 localStorage.setItem("cedula", cedula);
+                localStorage.setItem("rol", rol);
 
+                if(res.data.rol == "admin"){
+                    Vista.redirigirAdmin();
+                }
+                if (res.data.rol == "agente"){
+                    Vista.redirigirAIndex();
+                }
+                if (res.data.rol == "team leader"){
+                    Vista.redirigirTeamLeader();
+                }
 
-                Vista.mostrarAlertaSatisfactorio("Inicio de sesión exitoso");
-                Vista.redirigirAIndex();
             } else {
                 Vista.mostrarMensajeError("Usuario no encontrado")
                 //Vista.limpiarCampos();

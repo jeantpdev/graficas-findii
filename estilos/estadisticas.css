@@ -1,12 +1,5 @@
 @import url(./config/global.css);
-@import url(./menu.css);
-
-
-.hero .pagina-principal .grilla {   
-    display: flex;
-    flex-direction: column;
-    row-gap: 3vh;
-}
+@import url(./menu2.css);
 
 .datos-usuario .nombre p {
     font-size: 7vh;
@@ -16,7 +9,7 @@
 .datos-estadisticos .contenido-datos-estadisticos {
     display: flex;
     column-gap: 2vw;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .contenido-datos-estadisticos .estadistica {
@@ -80,9 +73,8 @@
 
 .graficas .contenido-graficas {
     display: grid;
-    grid-template-areas:
-        "ventas-mes ventas-realizar";
-    justify-content: space-between;
+    grid-template-areas: "ventas-mes ventas-realizar";
+    justify-content: space-around;
 }
 
 .graficas .ventas-mes {
@@ -110,17 +102,4 @@
 
 .ventas-realizar #myDona {
     height: 40vh;
-}
-@media only screen and (max-width: 700px) {
-    .contenido-datos-estadisticos .estadistica {
-      
-        grid-template-areas:
-            "valor icono"
-            "titulo titulo";
-        column-gap: 2vw;
-        height: 13vh;
-        width: 22vw;
-    }
-  
-
 }

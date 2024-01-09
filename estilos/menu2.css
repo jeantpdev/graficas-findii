@@ -1,0 +1,86 @@
+
+.menu{
+    display: flex;
+    width: 95vw;
+    margin: 1% auto;
+    border-radius: 0.5vw;
+    padding: 0.5vw 1vw;
+    background-color: rgb(30, 30, 30);
+    justify-content: space-between;
+    color: #ffffff;
+    align-items: center;
+}
+
+.menu .izquierda .logo-empresa img{
+    height: 5vh;
+}
+
+.menu .derecha{
+    display: flex;
+    align-items: center;
+}
+
+.menu .derecha .datos-agente{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.menu .derecha .datos-agente p{
+    font-size: 1vw;
+}
+
+.menu .derecha .foto-usuario img{
+    height: 10vh;
+    cursor: pointer;
+}
+
+.derecha .opciones-perfil{
+    display: none;
+    position: absolute;
+    top: 11vh;
+    border-radius: 0.5vw;
+    background-color: white;
+    box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
+    padding: 2vw;
+    right: 4vw;
+}
+
+.opciones-perfil .contenido-perfil{
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:start;
+    height: 30vh;
+    width: 12vw;
+}
+
+.contenido-perfil .enlaces{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+}
+
+.contenido-perfil .pie-menu{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+}
+
+.contenido-perfil .enlaces li a{
+    color: #191919;
+}
+
+.contenido-perfil .enlace{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 1vw;
+    flex-wrap: wrap;
+    row-gap: 2vh;
+}
+
+.contenido-perfil .enlace .icono i{
+    color: #191919;
+}
